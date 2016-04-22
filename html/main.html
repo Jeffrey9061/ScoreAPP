@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html> 
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>首页</title>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="../css/icommon.css" />
+		<link rel="stylesheet" href="../css/BASE.css" />
+		<style>
+			html,
+			body {
+				background-color: #f5f5f5;
+			}  
+		</style>
+
+	</head>
+
+	<body>
+		<!--顶部栏-->
+		<header class="mui-bar mui-bar-nav">
+			<a id="ShowCompany" class="mui-pull-left mui-icon mui-icon-arrowdown" style="color: white; font-size: 17px; padding-top: 15px;">公司</a>
+			<a id="EventsBtn" class="mui-pull-left mui-icon mui-icon-arrowdown" style="color: white; font-size: 17px; padding-top: 15px; margin-left: 1px;">赛事</a>
+			 <h1 class="mui-title ">看球APP</h1>
+		</header>
+		<!--底部选项栏-->
+		<nav class="mui-bar mui-bar-tab">
+			<a id="defaultTab" class="mui-tab-item mui-active" href="home.html">
+				<span class="mui-icon mui-icon-home"></span>
+				<span class="mui-tab-label">首页</span>
+			</a>
+			<a class="mui-tab-item" href="score.html">
+				<span class="mui-icon mui-icon-list"><span class="mui-badge">9</span></span>
+				<span class="mui-tab-label">比分</span>
+			</a>
+			<a class="mui-tab-item" href="odds.html">
+				<span class="mui-icon mui-icon-flag"></span>
+				<span class="mui-tab-label">赔率</span>
+			</a>
+			<a class="mui-tab-item" href="personal.html">
+				<span class="mui-icon mui-icon-contact"></span>
+				<span class="mui-tab-label">个人</span>
+			</a>
+		</nav>
+		<script src="../js/mui.min.js"></script>
+		<script type="text/javascript" charset="utf-8">
+			// 主窗口和侧滑窗口
+			var main = null;
+			/**
+			 * 首先附上webview选项卡切换的官方例子的地址
+			 * Hello Mui示例代码中examples/tab-webview-main.html
+			 * 官方例子中窗口切换部分的mui.extend()，在下没有看懂；
+			 * 所以自己写的相对简单些，如果哪位朋友读懂了，希望可以为在下解答一下；
+			 */
+			mui.init();
+			var aniShow = {};
+			mui.plusReady(function() {
+				/**
+				 * 获取当前窗口对象
+				 * http://www.html5plus.org/doc/zh_cn/webview.html#plus.webview.currentWebview
+				 */
+				main = plus.webview.currentWebview();
+				/**
+				 * 根据入口不同，隐藏/关闭入口页面，有时候我们做webview模式的侧滑，上一级的页面会影响侧滑页的zindex；
+				 * http://www.html5plus.org/doc/zh_cn/webview.html#plus.webview.WebviewObject.opener
+				 * http://www.html5plus.org/doc/zh_cn/webview.html#plus.webview.WebviewObject.hide
+				 * http://www.html5plus.org/doc/zh_cn/webview.html#plus.webview.close
+				 */
+				var entrance = main.entrance;
+				if (entrance === "login") {
+					alert("login");
+					main.opener().close("none");
+				}
+				/**
+				 * 获取顶部栏的文本节点
+				 * 关于querySelector()和querySelectorAll()
+				 * http://www.cnblogs.com/Wayou/p/html5_web_api_queryselector.html
+				 */
+				var title = document.querySelector(".mui-title");
+				// 将子窗口的地址存在数组中，方便进行遍历，创建子窗口；
+				var subpageArr = ['home.html', 'score.html', 'odds.html', 'personal.html'];
+				/**
+				 * 设置子窗口的样式，顶部默认44px，底部默认50px，并且设置窗口无滚动条；
+				 * http://www.html5plus.org/doc/zh_cn/webview.html#plus.webview.WebviewStyle
+				 */
+				var subStyles = {
+					top: "45px",
+					bottom: "50px"
+				};
+				// 生成四个子窗口，并添加至主窗口；
+				var subpage = null;
+				for (var i = 0, subLength = subpageArr.length; i < subLength; i++) {
+					// http://www.html5plus.org/doc/zh_cn/webview.html#plus.webview.create
+					// 这里将窗口id设置与窗口相对路径一致，方面下一步切换操作
+					subpage = plus.webview.create(subpageArr[i], subpageArr[i], subStyles);
+					/**
+					 * 除第一个子窗口外，其它子窗口均隐藏（无动画效果）；
+					 * 这里我们是直接获取的一个webviewObject，所以并不是调用webview的hide()方法，而是webviewObject的hide()方法；
+					 * http://www.html5plus.org/doc/zh_cn/webview.html#plus.webview.WebviewObject.hide
+					 */
+					if (i > 0) {
+						subpage.hide("none");
+					}
+					// http://www.html5plus.org/doc/zh_cn/webview.html#plus.webview.WebviewObject.append
+					main.append(subpage);
+				}
+				/**
+				 * 子页面切换
+				 */
+				var tabs = document.querySelectorAll(".mui-tab-item");
+				// 设置中间变量，用于存储当前处于展示状态窗口的标识（这里用的标识是窗口的相对地址），默认是第一个窗口；
+				var activeTab = subpageArr[0];
+				var targetTab = "";
+				for (var j = 0, tabLength = tabs.length; j < tabLength; j++) {
+					tabs[j].addEventListener("tap", function() {
+						// 获取当前点击的选项目标窗口的标识，比较所选项与处于展示状态窗口的标识进行对比；
+						targetTab = this.getAttribute("href");
+						//隐藏显示标题的公司和赛事选择
+						if (targetTab == 'home.html') {
+							document.getElementById('ShowCompany').style.display = "block";
+							document.getElementById('EventsBtn').style.display = "block";
+						} else {
+							document.getElementById('ShowCompany').style.display = "none";
+							document.getElementById('EventsBtn').style.display = "none";
+						}
+						if (targetTab == activeTab) {
+							return;
+						}
+						// 改变顶部栏的文字
+						title.innerHTML = this.querySelector(".mui-tab-label").innerHTML;
+						/**
+						 * 展示目标窗口，隐藏当前展示的窗口；
+						 * 这里要先展示，后隐藏，避免切换慢造成白屏；
+						 * http://www.html5plus.org/doc/zh_cn/webview.html#plus.webview.show
+						 * http://www.html5plus.org/doc/zh_cn/webview.html#plus.webview.hide
+						 */
+						//若为iOS平台或非首次显示，则直接显示
+						if (mui.os.ios || aniShow[targetTab]) {
+							plus.webview.show(targetTab);
+						} else {
+							//否则，使用fade-in动画，且保存变量
+							var temp = {};
+							temp[targetTab] = "true";
+							mui.extend(aniShow, temp);
+							plus.webview.show(targetTab, "fade-in", 300);
+						}
+						//隐藏当前;
+						plus.webview.hide(activeTab);
+						//更改当前活跃的选项卡
+						activeTab = targetTab;
+					});
+				}
+			});
+			/**
+			 * Android返回键处理（IOS只能通过home键来杀掉程序）
+			 * 返回逻辑：一秒内连续点击两次，退出程序；
+			 * 这个官方已经写的很明白了，这里需要加上这一段代码，防止返回到入口页面；
+			 * http://www.html5plus.org/doc/zh_cn/runtime.html#plus.runtime.quit
+			 */
+			var first = null;
+			mui.back = function() {
+					if (!first) {
+						first = new Date().getTime();
+						plus.nativeUI.toast("再按一次退出应用");
+						setTimeout(function() {
+							first = null;
+						}, 1000);
+					} else {
+						if (new Date().getTime() - first < 1000) {
+							plus.runtime.quit();
+						}
+					}
+				}
+				//显示公司 列表
+			document.getElementById('ShowCompany').addEventListener('tap', function() {
+				plus.webview.getWebviewById('home.html').evalJS('mui("#topPopover").popover("toggle")');
+				plus.webview.currentWebview().append(plus.webview.getWebviewById('home.html'));
+			});
+			//选择赛事
+			document.getElementById("EventsBtn").addEventListener('tap', function(e) {
+				e.detail.gesture.preventDefault(); //修复iOS 8.x平台存在的bug，使用plus.nativeUI.prompt会造成输入法闪一下又没了
+				mui.openWindow({
+					url: 'indexed-list-select.html',
+					id: 'select',
+					show: {
+						aniShow: 'pop-in'
+					},
+					waiting: {
+						autoShow: false
+					}
+				});
+			});
+			window.addEventListener('CompanyName', function(e) { //子webview监听该自定义事件
+				var params = e.detail; //得到自定义参数
+				//alert(params.param)
+				console.log(JSON.stringify(params));
+				var vCompanyName = params.SelectedName;
+				document.getElementById("ShowCompany").innerHTML = vCompanyName;
+			});
+			window.addEventListener('SelectedEvents', function(e) { //子webview监听该自定义事件
+				var params = e.detail; //得到自定义参数				
+				var vStr = JSON.stringify(params);
+				console.log(vStr);
+				mui.alert(params.SelectedEvents, '已选择赛事');
+			});
+		</script>
+	</body>
+
+</html>

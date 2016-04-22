@@ -1,0 +1,127 @@
+{
+  "html/odds.html": {
+    "href": "html/odds.html",
+    "resources": [
+      "js/mui.min.js",
+      "css/mui.min.css",
+      "img/60x60.gif"
+    ],
+    "refer": [],
+    "priority": 0
+  },
+  "html/minfo.html": {
+    "href": "html/minfo.html",
+    "resources": [
+      "css/mui.min.css",
+      "css/icommon.css",
+      "css/BASE.css",
+      "js/mui.min.js",
+      "js/dal-api.js"
+    ],
+    "refer": [],
+    "priority": 0
+  },
+  "html/home.html": {
+    "href": "html/home.html",
+    "resources": [
+      "css/mui.min.css",
+      "css/icommon.css",
+      "css/BASE.css",
+      "css/app.css",
+      "js/mui.min.js",
+      "js/live.js",
+      "sound/s.mp3"
+    ],
+    "refer": [
+      "html/minfo.html"
+    ],
+    "priority": 0
+  },
+  "html/score.html": {
+    "href": "html/score.html",
+    "resources": [
+      "css/mui.min.css",
+      "js/mui.min.js"
+    ],
+    "refer": [],
+    "priority": 0
+  },
+  "html/login.html": {
+    "href": "html/login.html",
+    "resources": [
+      "css/mui.min.css",
+      "css/style.css",
+      "js/mui.min.js",
+      "js/mui.enterfocus.js",
+      "js/app.js"
+    ],
+    "refer": [
+      "html/main.html"
+    ],
+    "priority": 0
+  },
+  "html/personal.html": {
+    "href": "html/personal.html",
+    "resources": [
+      "js/mui.min.js",
+      "css/mui.min.css"
+    ],
+    "refer": [
+      "html/login.html"
+    ],
+    "priority": 0
+  },
+  "html/indexed-list-select.html": {
+    "href": "html/indexed-list-select.html",
+    "resources": [
+      "css/mui.min.css",
+      "css/mui.indexedlist.css",
+      "css/icommon.css",
+      "css/BASE.css",
+      "js/mui.min.js",
+      "js/mui.indexedlist.js"
+    ],
+    "refer": [],
+    "priority": 0
+  },
+  "html/main.html": {
+    "href": "html/main.html",
+    "resources": [
+      "css/mui.min.css",
+      "css/icommon.css",
+      "css/BASE.css",
+      "js/mui.min.js"
+    ],
+    "refer": [
+      "html/odds.html",
+      "html/home.html",
+      "html/score.html",
+      "html/personal.html",
+      "html/indexed-list-select.html"
+    ],
+    "priority": 0
+  },
+  "guide.html": {
+    "href": "guide.html",
+    "resources": [
+      "css/mui.min.css",
+      "js/mui.min.js"
+    ],
+    "refer": [
+      "html/main.html"
+    ],
+    "priority": 0
+  },
+  "index.html": {
+    "href": "index.html",
+    "resources": [
+      "css/mui.css",
+      "js/mui.min.js"
+    ],
+    "refer": [
+      "guide.html",
+      "html/main.html"
+    ],
+    "priority": 0
+  }
+}

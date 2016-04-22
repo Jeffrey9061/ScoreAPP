@@ -1,0 +1,128 @@
+body{ background-color: #fff;  
+	color: #333333;
+	margin: 0; padding: 0;
+}/*
+.mui-bar{ background-color: #168d67; color: #FFFFFF;}
+.mui-bar a{color: #FFFFFF; }
+.mui-bar .mui-title{ color: #fff; font-weight: 600;}
+.mui-content{background-color: #fff;  }*/
+header.mui-bar{background-color: #003366; color: #fff; }
+header.mui-bar a{color: #FFFFFF; }
+header.mui-bar .mui-title{ color: #fff; font-weight: 600;}
+footer{ 
+    position: fixed;
+    z-index: 10;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    height: 44px;
+    padding-right: 10px;
+    padding-left: 10px;
+    border-bottom: 0;
+    background-color: #f2f2f2;
+    -webkit-box-shadow: 0 0 1px rgba(0,0,0,.85);
+    box-shadow: 0 0 1px rgba(0,0,0,.85);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
+ul,li,span{ margin: 0; padding: 0;}
+.live-nav{ background-color: #f9f9f9; border-bottom:1px solid #d9d9d9; height: 32px;}
+.live-nav li{ list-style: none; float: left; width: 20%; line-height: 32px; font-size: 16px; text-align: center; color: #939393;}
+.live-nav li.cur{ color: #168d67; font-weight: 600;}
+
+.item-list{ font-size: 13px; height: 64px; margin: 0 5px; padding:2px; position: relative; }
+.item-l{ width: 60%; float: left;}
+.item-r{ width: 38%;float: left;}
+.item-r1{ height: 18px; line-height: 18px; overflow: hidden; }
+.item-r2{ height: 21px; line-height: 21px;  overflow: hidden;}
+
+.item-d{ }
+
+span.td-mtype{ display: inline-block; border-radius: 2px; text-align: center; color: #fff; height: 18px; width:70px; margin-left: 30px;}
+span.td-time{ color:#666 ; float: right; }
+span.td-status{display: block;float: right; font-size: 13px; width: 15%;text-align: center;color: #880000; }
+.td-status img{width: 11px;}
+.td-bf{display: block; float: right; width: 15%; text-align: center; color: #2929fe; font-weight: bold;}
+.td-team{ font-size: 14px;  display: block; float: left; text-align: right;  width: 85%;white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
+
+.td-odd,.td-rq,.td-tool{float: left;display: block;text-align: center;  }
+
+.td-odd{ width:35%;  }
+.td-rq{  width: 40%; }
+.odds1{ }
+.odds1,.odds2,.odds3{height: 14px; line-height: 14px; font-size: 12px;}
+.odds1,.odds3{color: #880000; font-weight: 700; }
+.item-list .btn-fav{  display: block; color:#F5C801 ;height: 20px; width: 20px; font-size: 20px;position: absolute; top: 0px; left: 0px; padding: 5px; }
+.item-list .btn-more{ color:#d9d9d9; font-size: 20px; position: absolute; right: 5px; top: 30px; }
+
+.f_h{color: #880000; }
+.f_r{ color:red;}
+.f_c{ color: #939393;}
+.br_b{ border-bottom: 1px solid #efefef ;  }
+
+span.rc,span.yc { display: inline-block; border-radius: 2px; border: 1px solid; margin-right: 3px;  color: #ffffff; font-size: 14px; width: 14px; line-height: 14px;  text-align: center; font-weight: bold;}
+span.rc{background-color: #FF0000; border-color: #B13B3B; }
+span.yc{background-color: #FFEF00; color: #993300; border-color: #C08161; }
+
+
+/***********2016-01-09**************/
+/*****************详情页     2016-01-09 *********/
+.f_g {
+    background: #E6FFAA;
+}
+.up {background-color: #FFb0c8;}
+.down {	background-color: #DCFFB9;}
+.f_w{  font-weight: bold;}
+.f_team{ font-size: 14px;}
+.f_bf{ color: #2929fe; font-weight: bold; }
+.matchdetails,.meventable{width: 100%;overflow: hidden;border: none;border-collapse: separate;border-spacing: 0px 0px; border-spacing: 0 ;  }
+.matchdetails td,.meventable td{padding: 0;}
+.matchdetails tbody tr{height: 28px;  vertical-align: middle; text-align: center; } 
+.matchdetails thead td{ }
+.matchdetails tbody td{ font-size: 13px; }
+.box_warp h2.title{color: #326195;font-size: 16px;font-weight: bold;text-decoration: none;margin-top: 10px;margin-bottom: 10px;margin-left: 5px;}
+.matchdetails .tleft,.meventable .tleft{ text-align: left; padding-left: 5px;}
+.matchdetails .tright,.meventable .tright{ text-align: right; padding-right: 5px;}
+.matchdetails .f_team{ font-size: 14px;}
+.matchdetails .table-d05{ width: 5px;}
+.matchdetails .table-d3,.meventable .table-d3{ width:30px;}
+.matchdetails .table-d6,.meventable .table-d6{ width:60px;}
+.matchdetails .table-d100,.meventable .table-d100{ width:100px;}
+
+
+.meventable tbody tr{height: 25px;  vertical-align: middle; text-align: center; } 
+.meventable .bgcolor {background: #F2F7F0;}
+.meventable thead tr {height: 25px;line-height: 25px;text-align: center;} 
+.meventable .title td{ border-bottom: 2px solid #168d67; font-size: 13px;}
+.meventable .team-h-rank,.meventable .team-c-rank{ height: 15px; line-height:15px; /*padding: 1px;border: solid 1px #e7e7e7; */ text-decoration: none;position: relative;}
+.meventable .team-h-rank{ border-right: 0; width: 180px; float: right;} 
+.meventable .team-c-rank{ border-left: 0;width: 180px; float:left;}
+.meventable .h-warp {float: right;display: none;height: 15px;background-color: #f4c747;color: #fff; }
+.meventable .c-warp {float: left;display: none;height: 15px;background-color: #25765c;color: #fff;}
+
+/********图标*********/
+span.icon.general{background-image: url(../img/general.png); cursor: pointer; display: inline-block; vertical-align: middle; margin: 0 1px;}
+.icon.general.e_7{background-position: -5px -397px; width: 15px; height: 15px;}
+/**进球g*/
+.icon.general.e_1{background-position: -5px -105px; width: 15px; height: 14px;}
+/***助攻z***/
+.icon.general.e_12{background-position: -5px -124px; width: 10px; height: 12px;}
+/***乌龙球 o****/
+.icon.general.e_8{background-position: -5px -141px; width: 20px; height: 20px;}
+/****（被替换下场） x****/
+.icon.general.e_11{background-position: -5px -166px; width: 15px; height: 16px;}
+/****双黄变红 t *****/
+.icon.general.e_9{background-position: -5px -187px; width: 15px; height: 16px;}
+.icon.general.yellowred2{background-position: -5px -208px; width: 11px; height: 15px;}
+.icon.general.red2{background-position: -5px -228px; width: 8px; height: 12px;}
+/***红牌 r****/
+.icon.general.e_2{background-position: -5px -245px; width: 14px; height: 16px;}
+.icon.general.left_red{background-position: -5px -266px; width: 10px; height: 12px;}
+/***簧牌y****/
+.icon.general.e_3{background-position: -5px -283px; width: 14px; height: 16px;}
+.icon.general.soundOff{background-position: -5px -304px; width: 11px; height: 12px;}
+.icon.general.right_white{background-position: -5px -321px; width: 9px; height: 10px;}
+.icon.general.help{background-position: -5px -336px; width: 22px; height: 22px;}
+.icon.general.down{background-position: -5px -363px; width: 8px; height: 8px;}
+.icon.general.yellow2{background-position: -5px -376px; width: 8px; height: 12px;}
